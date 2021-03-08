@@ -1,0 +1,37 @@
+package week1;
+
+import java.util.Scanner;
+
+public class HelloWord {
+	public static void main(String[] args) {
+		String songName;
+		float songPrice;
+		int songNumber;
+		
+		float manager_Commission;
+		float site_Commisson;
+		float manageRate;
+		float siteRate;
+		float totalRevenue;
+		
+		manageRate=0.12f;
+		siteRate=0.03f;
+		
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入歌曲名称");
+		songName=scan.nextLine();
+		System.out.println("请输入歌曲单价");
+		songPrice=scan.nextFloat();
+		System.out.println("请输入歌曲总下载量");
+		songNumber=scan.nextInt();
+		
+		totalRevenue=songPrice*songNumber;
+		manager_Commission=totalRevenue*manageRate;
+		site_Commisson=totalRevenue*siteRate;
+		
+		System.out.println("歌曲总收入为："+totalRevenue);
+		System.out.println("经理总利润为："+manager_Commission);
+		System.out.println("网站总利润为："+site_Commisson);
+	}
+
+}
