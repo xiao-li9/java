@@ -1,0 +1,28 @@
+package week1;
+
+import java.util.Scanner;
+
+public class name {
+	public static void main(String[] args) {
+		int cookies;
+		
+		
+		int cookies_Boxes;
+		int cookies_Container;
+		int left_Cookies;
+		int left_boxes;
+		
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入饼干总数量：");
+		cookies=scan.nextInt();
+		cookies_Boxes=cookies/24;
+		cookies_Container=cookies_Boxes/75;
+		left_Cookies=cookies%24;
+		left_boxes=cookies_Boxes%75;
+		
+		System.out.println("有饼干的盒子数是："+cookies_Boxes);
+		System.out.println("装饼干盒子的容器数是："+cookies_Container);
+		System.out.println("剩余饼干数是："+left_Cookies);
+		System.out.println("剩余饼干盒数是："+left_boxes);
+	}
+}
