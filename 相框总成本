@@ -1,0 +1,62 @@
+package week1;
+
+import java.util.Scanner;
+
+public class Who {
+	public static void main(String[] args) {
+		float ordinary_Frame;
+		float elegant_Frame;
+		float cardBoard;
+		float glassPlate;
+		float coloring;
+		float crown;
+		
+		ordinary_Frame=0.15f;
+		elegant_Frame=0.25f;
+		cardBoard=0.02f;
+		glassPlate=0.07f;
+		coloring=0.10f;
+		crown=0.35f;
+		
+		float length;
+		float width;
+		/*String ordinary;
+		String elegant;
+		String card;
+		String glass;*/
+		String frame_Type;
+		String color;
+		String behindType;
+		int crownNuber;
+		float cost1;
+		float cost2;
+		float totalCost;
+		
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入相框的长和宽：");
+		length=scan.nextFloat();
+		width=scan.nextFloat();
+		System.out.println("请输入相框的类型");
+		frame_Type=scan.nextLine();
+		System.out.println("请选择上色颜色：");
+		color=scan.nextLine();
+		System.out.println("请输入硬纸板或者玻璃板：");
+		behindType=scan.nextLine();
+		System.out.println("若您想加入皇冠，请输入皇冠的数量，若不想请输入0：");
+		crownNuber=scan.nextInt();
+		
+		if(frame_Type=="ordinary")
+         {
+			cost1=length* width*coloring+length* width*ordinary_Frame;
+         }
+		else {
+			cost1=length* width*coloring+length* width*elegant_Frame;
+		     }
+		if(behindType=="card")
+			cost2=cost1+length* width*cardBoard;
+		else cost2=cost1+length* width*glassPlate;
+		totalCost=cost2+crownNuber*crown;
+		
+		System.out.println("相框总成本为："+totalCost);
+	}
+}
