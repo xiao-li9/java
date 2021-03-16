@@ -1,0 +1,27 @@
+package week;
+
+import java.util.Scanner;
+
+public class Print {
+	public static void main(String[] a) {
+	
+		int n;
+		int i;
+		int j;
+		System.out.print("请输入行数:");
+
+		
+		Scanner scan = new Scanner(System.in);
+		n = scan.nextInt();
+		
+		for ( i =0 ; i <n; i++) {
+			for ( j = 1; j <= n - i; j++) {
+				System.out.print(" ");
+			}
+			for ( j = 0; j <i; j++) {
+				System.out.print("* ");
+			}
+			System.out.println();
+		}
+	}
+}
