@@ -1,0 +1,27 @@
+package week3;
+
+import java.util.Scanner;
+
+public class Coin_machine {
+	public static void main(String[] args) {
+		float money;
+		int dollar,fiftieth,twenty,ten,five;
+		int expand_Number;
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入金额:");
+		money=scan.nextFloat();
+		System.out.println("金额为："+money);
+		expand_Number=(int)(money*100);
+		dollar=expand_Number/100;
+		fiftieth=expand_Number%100/50;
+		twenty=expand_Number%100%50/20;
+		ten=expand_Number%100%50%20/10;
+		five=expand_Number%100%50%20%10/5;
+		System.out.println("美元的金币有："+dollar+"个");
+		System.out.println("五十分的硬币有："+fiftieth+"个");
+		System.out.println("二十分的硬币有："+twenty+"个");
+		System.out.println("十分的硬币有："+ten+"个");
+		System.out.println("五分的硬币有："+five+"个");
+	}
+
+}
