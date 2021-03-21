@@ -1,0 +1,102 @@
+package week3;
+
+import java.util.Scanner;
+
+public class Score {
+	public static int score[];
+public static void main(String[] args) {
+	int choose=menu();
+	int average,max,min;
+	while(choose!=5) {
+		switch(choose) {
+		case 1:Entern_score();break;
+		case 2:getAverage();break;
+		case 3:getHighest();break;
+		case 4:getlowest();break;
+		default:System.out.println("无效选择");
+		}
+		choose=menu();
+	}
+	System.out.println("谢谢,欢迎下次使用");
+}
+
+public static int menu() {
+	int choose=0;
+	System.out.println("1.输入学生成绩");
+	System.out.println("2.取平均成绩");
+	System.out.println("3.最高分");
+	System.out.println("4.最低分");
+	System.out.println("5.退出");
+	System.out.println("请输入（1-5）");
+	Scanner scan=new Scanner(System.in);
+	choose=scan.nextInt();
+	return choose;
+}
+public static void Entern_score() {
+	int i;
+	score=new int[5];
+	for(i=0;i<5;i++)
+	{
+		Scanner scan=new Scanner(System.in);
+		System.out.println("请输入第"+(i+1)+"个成绩");
+		boolean ok=false;
+		while(!ok){
+			score[i]=scan.nextInt();
+			if(score[i]<0||score[i]>100)
+			{
+				System.out.println("该成绩无效，请重新输入");
+			}
+			else {
+				ok=true;
+			}
+		}
+	}
+}
+public static int getAverage() {
+	if(score==null) {
+		System.out.println("还未输入成绩，请先选择1输入成绩");
+		return 0;
+	}
+	int sum=0,average=0;
+	int i;
+	for(i=0;i<score.length;i++) {
+		sum=sum+score[i];
+	}
+	average=sum/score.length;
+	System.out.println("平均分为："+average);
+	return average;
+}
+public static void getHighest() {
+	if(score==null) {
+		System.out.println("还未输入成绩，请先选择1输入成绩");
+		return ;
+	}
+	int max=0;
+	int i;
+	max=score[0];
+	for(i=1;i<score.length;i++) {
+		if(score[i]>max) {
+			max=score[i];
+		}
+		System.out.println("最高成绩为："+max);
+	}
+	//return max;
+}
+public static int getlowest() {
+	if(score==null) {
+		System.out.println("还未输入成绩，请先选择1输入成绩");
+		return 0;
+	}
+	int min=0;
+	int i;
+	min=score[0];
+	for(i=1;i<score.length;i++)
+	{
+		if(score[i]<min) {
+			min=score[i];
+		}
+	}
+	System.out.println("最低分为："+min);
+	return min;
+}
+}
