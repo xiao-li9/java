@@ -1,0 +1,23 @@
+package week4;
+
+public class Student {
+ String name;
+ String phone;
+ String number;
+ 
+ public Student(){
+	 name="li";
+	 phone="123";
+	 number="001";
+ }
+ public Student(String name,String phone,String number) {
+	 this.name=name;
+	 this.phone=phone;
+	 this.number=number;
+ }
+ void displayStudents() {
+	 System.out.println(name);
+	 System.out.println(phone);
+	 System.out.println(number);
+ }
+}
