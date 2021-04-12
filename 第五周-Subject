@@ -1,0 +1,34 @@
+package Week5;
+
+public class Subject {
+	private String id;
+	private String subjectname;
+
+	public Subject(String id,String subjectname){
+		this.id = id;
+		this.subjectname = subjectname;
+	}
+
+	public String getSubjectID() {
+		return id;
+	}
+
+	public void setSubjectID(String subjectID) {
+		this.id = id;
+	}
+
+	public String getSubjectname() {
+		return subjectname;
+	}
+
+	public void setSubjectname(String subjectname) {
+		this.subjectname = subjectname;
+	}
+
+	@Override
+	public String toString() {
+		return "Subject [subjectID=" + id + ", subjectname=" + subjectname + "]";
+	}
+
+
+}
