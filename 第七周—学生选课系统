@@ -1,0 +1,288 @@
+package wee7;
+
+public class Student {
+	private String studentid;
+	private String studentname;
+	
+	public Student(String id,String name){
+		super();
+		this.studentid=studentid;
+		this.studentname=studentname;
+	}
+	
+	public String getId() {
+		return studentid;
+	}
+
+	public void setId(String studentid) {
+		this.studentid = studentid;
+	}
+
+	public String getName() {
+		return studentname;
+	}
+
+	public void setName(String studentname) {
+		this.studentname = studentname;
+	}
+
+	public String toString(){
+		String info;
+		info="student.id="+this.studentid;
+		info+=",student.name="+this.studentname;
+		return info;
+	}
+}
+
+
+
+
+
+
+package wee7;
+
+public class Subject {
+	
+private String subjectid;
+private String subjectname;
+private int maxNum;
+
+public Subject(String subjectid,String subjectname,int maxNum){
+	this.subjectid=subjectid;
+	this.subjectname=subjectname;
+	this.maxNum=maxNum;
+}
+public String getsubjectid(){
+	return this.subjectid;
+}
+public void setsubjectid(String subjectid){
+	this.subjectid=subjectid;
+}
+public String getSubjectname() {
+	return subjectname;
+}
+public void setSubjectname(String subjectname) {
+	this.subjectname = subjectname;
+}
+public int getMaxNum() {
+	return maxNum;
+}
+public void setMaxNum(int maxNum) {
+	this.maxNum = maxNum;
+}
+public String toStringt(){
+	String msg;
+	msg="subjectid="+this.subjectid;
+	msg+=",subjectname="+this.subjectname;
+	return msg;
+}
+}
+
+
+
+
+
+
+package wee7;
+
+
+
+public class Emrollment {
+	private Student list[];
+	private Subject sub;
+	private int count;
+	
+	public Emrollment(Subject sub) {
+		this.sub=sub;
+		list=new Student[sub.getMaxNum()];
+		count=0;
+	}
+	
+public Student[] getList() {
+		return list;
+	}
+
+	public void setList(Student[] list) {
+		this.list = list;
+	}
+
+	public Subject getSub() {
+		return sub;
+	}
+
+	public void setSub(Subject sub) {
+		this.sub = sub;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+public boolean add(Student stu) {
+		if(stu==null)
+			return false;
+		if(list.length<=count )
+			return false;
+		list[count]=stu;
+		count++;
+		return true;
+	}
+public boolean remove(String id) {
+	int index = count;
+	for(int i=0;i<list.length && list[i]!=null;i++)
+	{
+		if(list[i].getId().equals(id))
+			index=i;
+	}
+	if(index>=count ||index<0 )
+		return false;
+	list[index]=null;
+	return true;
+}
+public int indexOf(String id) {
+	for(int i=0;i<list.length && list[i]!=null;i++)
+	{
+		if(list[i].getId().equals(id))
+			return i;
+	}
+	return -1;
+}
+public boolean remove(int index) {
+	
+	for(int i=index;i<count-1;i++) {
+		list[i]=list[i+1];
+		list[count-1]=null;
+		count--;
+		return true;
+	}
+}
+public int indexOf(String id) {
+	for(int i=0;i<list.length && list[i]!=null;i++) {
+		if(list[i].getId().equals(id))
+			return i;
+	}
+	return -1;
+}
+public int size() {
+	return count;
+}
+public Student get(int index) {
+	return list[index];
+}
+public String tostring() {
+	String msg="";
+	for(int i=0;i<list.length && list[i]!=null;i++) {
+		msg=msg+list[i].toString()+"\n";
+	}
+	return msg;
+}
+}
+
+
+package wee7;
+
+import java.util.Scanner;
+
+
+
+public class Driver {
+ public static Emrollment emrollment;
+public static void main(String[] args) {
+	int choose=menu();
+	while(choose!=5){
+		switch(choose){
+		case 1:Createcourse();break;
+		case 2:Selectcourse();break;
+		case 3:Dropcourse();break;
+		case 4:Display();break;
+		default:System.out.println("无效输入");
+		
+		}
+		choose=menu();
+	}
+	
+}
+public static int menu(){
+	int choose=0;
+	System.out.println("1.创建课程");
+	System.out.println("2.选课");
+	System.out.println("3.退选");
+	System.out.println("4.打印名单");
+	System.out.println("5.退出");
+	System.out.println("请选择（1—5）");
+	Scanner scan=new Scanner(System.in);
+	choose=scan.nextInt();
+	return choose;
+}
+public static void Createcourse(){
+	String subjectid,subjectname;
+	int maxNum;
+	Scanner scan= new Scanner (System.in);
+	System.out.println("请输入课程代码:");
+	subjectid=scan.next();
+	System.out.println("请输入课程名称：");
+	subjectname=scan.next();
+	System.out.println("请输入此课程最大容量:");
+	maxNum=scan.nextInt();
+	System.out.println("课程id："+subjectid+"");
+}
+public static void Select_course(){
+	if(emrollment==null) {
+		System.out.println("请先进行课程的创建");
+		return ;
+	}
+	Scanner scan=new Scanner(System.in);
+	System.out.println("请输入课程号");
+	String subjectid=scan.next();
+	System.out.println("请输入课程名称");
+	String subjectname=scan.next();
+	System.out.println("请输入课程容量");
+	int maxNum=scan.nextInt();
+	
+	Subject sub=new Subject(subjectid,subjectname,maxNum);
+	emrollment=new Emrollment(sub);
+	System.out.println("创建成功！");
+	System.out.println(sub.toString());
+}
+public static void Selectcourse() {
+	if(emrollment==null) {
+		System.out.println("请先进行课程的创建");
+		return ;
+	}
+	Scanner scan=new Scanner(System.in);
+	System.out.println("请输入学生学号");
+	String studentid=scan.next();
+	System.out.println("请输入学生姓名");
+	String studentname=scan.next();
+	
+	Student stu=new Student(studentid,studentname);
+	emrollment.add(stu);
+	System.out.println("选课成功！");
+}
+public static void Dropcourse()
+{
+	if(emrollment==null) {
+	System.out.println("请先进行课程的创建");
+	return ;
+}
+	Scanner scan=new Scanner (System.in);
+	System.out.println("请输入退选学生id:");
+	String studentid = scan.next();
+	 emrollment.remove(studentid);
+	System.out.println(emrollment.toString());
+}
+public static void Display() 
+{
+	if(emrollment==null) {
+		System.out.println("请先进行课程的创建");
+		return ;
+	}
+	
+	System.out.println(emrollment.tostring());
+}
+}
+
